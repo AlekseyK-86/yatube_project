@@ -4,9 +4,9 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 class Group(models.Model):
-    title = models.TextField('Название группы')
-    slug = models.TextField('Адрес')
-    description = models.TextField('Описание')
+    title = models.CharField(max_length=200, verbose_name='Название группы')
+    slug = models.SlugField(unique=True, verbose_name='Адрес')
+    description = models.TextField(verbose_name='Описание')
 
     class Meta:
         verbose_name = 'Группа'

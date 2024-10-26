@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %} {{ title }}
+{% endblock %}
+{% block content %}
+      <div class="container py-5">        
+        <h1>Все посты пользователя {{ username.get_full_name }} </h1>
+        <h3>Всего постов: {{ post_count }} </h3>   
+        {% for p in page_obj %}
+        <article>
+          <ul>
+            <li>
+              Автор: {{ username.get_full_name }}
+              <a href="">все посты пользователя</a>
+            </li>
+            <li>
+              Дата публикации: {{ p.pub_date }} 
+            </li>
+          </ul>
+          <p>
+          {{ p.text }} 
+          </p>          
+            <a href="{% url 'posts:post_detail' p.pk %}">подробная информация</a><br>
+            {% if post_author %}
+                <a href="{% url 'posts:post_edit' p.pk %}">редактировать запись</a>
+            {% endif %}
+
+        </article>   
+          
+            {% if p.group %}
+                <a href="{% url 'posts:group_list' p.group.slug %}">все записи группы "{{ p.group }}"</a>
+            {% endif %}
+                {% if not forloop.last %}<hr>
+            {% endif %}
+        {% endfor %}  
+        {% include "includes/paginator.html" %}
+      </div>
+{% endblock content %}

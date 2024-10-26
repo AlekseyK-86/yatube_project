@@ -1,22 +1,23 @@
 {% extends "base.html" %}
-  {% block title %}
+  {% block title %} {{ title }}
   {% endblock %}
   {% block content %}
-    <div class="container py-5">     
-      {% for post in posts%}
+    <div class="container py-5">
+      {% for post in page_obj%}
         <ul>
           <li>
             Автор: {{ post.author.get_full_name }}
           </li>
           <li>
-            Дата публикации: {{ post.pub_date|date:"d E Y" }} 
+            Дата публикации: {{ post.pub_date|date:"d E Y" }}
           </li>
-        </ul> 
-        <p>{{ post.text }}</p>
+        </ul>
+        <p>{{ post.text }}</p>        
         {% if post.group %}
           <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы "{{ post.group }}"</a>
-        {% endif %}  
-        {% if not forloop.last %}<hr>{% endif %}      
-      {% endfor %} 
-    </div>  
+        {% endif %}
+        {% if not forloop.last %}<hr>{% endif %}
+      {% endfor %}
+      {% include "includes/paginator.html" %}
+    </div>
   {% endblock %}

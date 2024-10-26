@@ -1,0 +1,31 @@
+<style>
+    .scroll-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        display: none; 
+    }
+    
+    .scroll-to-top:hover {
+        background-color: #0056b3; 
+    }
+    </style>
+    
+    <button class="scroll-to-top" onclick="window.scrollTo(0, 0);">Вверх</button>
+    
+    <script>
+    window.onscroll = function() {
+        var button = document.querySelector('.scroll-to-top');
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            button.style.display = "block";
+        } else {
+            button.style.display = "none";
+        }
+    };
+    </script>
