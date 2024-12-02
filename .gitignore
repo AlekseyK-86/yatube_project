@@ -162,3 +162,9 @@ cython_debug/
 #.idea/
 /sent_emails
 /sent_emails/*
+
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover

@@ -1,5 +1,6 @@
-from django.db import models
 from django.contrib.auth import get_user_model
+from django.db import models
+
 
 User = get_user_model()
 
@@ -13,22 +14,24 @@ class Group(models.Model):
         verbose_name_plural = 'Группы'
 
     def __str__(self):
-        return self.title  
-
+        return self.title
 
 class Post(models.Model):
-    text = models.TextField('Текст поста')
+    text = models.TextField('Текст поста', help_text='Введите текст поста')
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
     author = models.ForeignKey(
         User, 
         on_delete=models.CASCADE,
-        related_name = 'posts'
+        related_name = 'posts', 
+        verbose_name='Автор', 
         )
     group = models.ForeignKey(
         Group, 
         blank=True, 
         null=True, 
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE, 
+        verbose_name='Группа', 
+        help_text='Группа, к которой будет относиться пост'
         )
     
     class Meta:
@@ -36,5 +39,4 @@ class Post(models.Model):
         verbose_name_plural = 'Посты'
     
     def __str__(self):
-        return self.text
- 
+        return self.text[:15]
