@@ -3,16 +3,13 @@ from django.test import TestCase, Client
 
 from http import HTTPStatus
 
-from ..models import Post, Group
+from yatube.posts.models import Post, Group
+from yatube.posts.constants import USERNAME
 
 User = get_user_model()
 
 
 class PostURLTests(TestCase):
-
-    global USERNAME
-    USERNAME = 'NoName'
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

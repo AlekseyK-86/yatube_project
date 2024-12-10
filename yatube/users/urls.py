@@ -10,10 +10,10 @@ from django.contrib.auth.views import (
     )
 from django.urls import path, reverse_lazy
 
-from . import views
+from users import views
+from users.apps import UsersConfig
 
-
-app_name = 'users'
+app_name = UsersConfig.name
 
 urlpatterns = [
     path('signup/', views.SignUp.as_view(), name='signup'),

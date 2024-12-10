@@ -1,7 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from ..models import Group, Post
+from yatube.posts.models import Post, Group
+from yatube.posts.constants import USERNAME
 
 User = get_user_model()
 
@@ -10,7 +11,7 @@ class PostModelTest(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.user = User.objects.create_user(username='NoName')
+        cls.user = User.objects.create_user(username=USERNAME)
         cls.group = Group.objects.create(
             title = 'Тестовая группа',
             slug = 'Тестовый слаг',

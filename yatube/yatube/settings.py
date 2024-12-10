@@ -1,23 +1,19 @@
+from pathlib import Path
 import os
+import sys
+from dotenv import load_dotenv
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
+load_dotenv()
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'gn$6b7l6cpa_6l%o0g8cwc2r#_29c%j0=xecxem8_j9nd%aq6@'
+SECRET_KEY = os.getenv('SECRET_KEY') or sys.exit('SECRET_KEY environment variable is not set.')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG') or sys.exit('DEBUG environment variable is not set.')
 
 ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '[::1]',
-    'testserver',
+    '*',    
 ]
 
 
@@ -125,5 +121,3 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 LOGIN_URL = 'users:login'
 
 LOGIN_REDIRECT_URL = 'posts:index'
-
-#LOGOUT_REDIRECT_URL = 'posts:index'

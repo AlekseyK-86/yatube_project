@@ -4,17 +4,14 @@ from django.urls import reverse
 
 from http import HTTPStatus
 
-from ..forms import PostForm
-from ..models import Post, Group
+from yatube.posts.forms import PostForm
+from yatube.posts.models import Post, Group
+from yatube.posts.constants import USERNAME
 
 User = get_user_model()
 
 
 class PostCreateFormTests(TestCase):
-
-    global USERNAME
-    USERNAME = 'NoName'
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
