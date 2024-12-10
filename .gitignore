@@ -168,3 +168,6 @@ htmlcov/
 .coverage.*
 coverage.xml
 *.cover
+
+
+**/.vscode/
