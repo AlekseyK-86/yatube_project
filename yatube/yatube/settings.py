@@ -1,24 +1,23 @@
-from pathlib import Path
 import os
 import sys
+
 from dotenv import load_dotenv
+
+from pathlib import Path
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv()
+load_dotenv(override=True)
 
 SECRET_KEY = os.getenv('SECRET_KEY') or sys.exit('SECRET_KEY environment variable is not set.')
 
-DEBUG = os.getenv('DEBUG') or sys.exit('DEBUG environment variable is not set.')
+DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = [
-    '*',    
-]
+ALLOWED_HOSTS = tuple((os.getenv('ALLOWED_HOSTS') or '*').split(','))
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',

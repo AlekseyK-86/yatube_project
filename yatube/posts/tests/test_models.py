@@ -1,8 +1,10 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from yatube.posts.models import Post, Group
 from yatube.posts.constants import USERNAME
+from yatube.posts.models import Post, Group
+
+
 
 User = get_user_model()
 

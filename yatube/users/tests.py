@@ -6,6 +6,7 @@ from http import HTTPStatus
 
 from yatube.posts.constants import USERNAME
 
+
 User = get_user_model()
 
 
