@@ -1,7 +1,11 @@
 from django.urls import path
-from . import views
 
-app_name = 'posts'
+from posts import views
+from posts.apps import PostsConfig
+
+
+app_name = PostsConfig.name
+
 
 urlpatterns = [
     path('', views.index, name='index'),
