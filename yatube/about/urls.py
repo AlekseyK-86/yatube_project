@@ -2,8 +2,11 @@ from django.urls import path
 
 from about import views
 
+from about.apps import AboutConfig
 
-app_name = 'about'
+
+app_name = AboutConfig.name
+
 
 urlpatterns = [
     path('author/', views.AboutAuthorView.as_view(), name='author'),
